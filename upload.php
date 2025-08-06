@@ -1,37 +1,3 @@
-# Página de Amor para Sara
-
-![Preview](preview.jpg)
-
-Una página web romántica dedicada a Sara, con diseño en tonos rosas pastel y blanco, que permite subir fotos y expresar sentimientos.
-
-## Características Principales
-
-- 💌 Carta de amor personalizada
-- 📸 Galería de fotos con función de subir imágenes
-- ❤️ Lista de razones por las que amas a Sara
-- ⏳ Contador de tiempo juntos
-- 💝 Diseño romántico en rosa pastel y blanco
-- 📱 Diseño responsive para todos los dispositivos
-
-## Cómo Personalizar
-
-1. **Carta de amor**: Edita el texto en `index.html` dentro de la sección `love-letter`
-2. **Razones de amor**: Modifica la lista en la sección `reasons`
-3. **Fecha de inicio**: Cambia la fecha en el script JavaScript (`startDate`)
-4. **Colores**: Ajusta los tonos en `style.css`
-
-## Funcionalidad de Subir Fotos
-
-La página incluye:
-- Frontend para seleccionar y previsualizar fotos
-- Diseño del formulario de subida
-- (Opcional) Para subir fotos al servidor, necesitarás:
-  - Un servidor con PHP
-  - El archivo `upload.php` (proporcionado abajo)
-
-## Archivo upload.php (opcional)
-
-```php
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['photoUpload'])) {
     $targetDir = "uploads/";

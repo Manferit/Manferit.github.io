@@ -3,119 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anime World - Tienda Oficial</title>
+    <title>Para Sara, Con Todo Mi Amor</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="https://via.placeholder.com/150x80?text=Anime+World" alt="Anime World Logo">
+        <div class="heart-container">
+            <i class="fas fa-heart"></i>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Productos</a></li>
-                <li><a href="#">Mangas</a></li>
-                <li><a href="#">Figuras</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
-        <div class="cart-icon">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-count">0</span>
-        </div>
+        <h1>Para Sara</h1>
+        <p class="subtitle">Cada latido de mi corazón lleva tu nombre</p>
     </header>
 
     <main>
-        <section class="hero">
-            <h1>Bienvenido a Anime World</h1>
-            <p>Los mejores productos de anime directamente desde Japón</p>
-            <button class="cta-button">Explorar Productos</button>
+        <section class="love-letter">
+            <h2><i class="fas fa-heart"></i> Mi Carta de Amor <i class="fas fa-heart"></i></h2>
+            <div class="letter-content">
+                <p>Querida Sara,</p>
+                <p>Desde el momento en que entraste en mi vida, todo cobró un nuevo significado. Tu sonrisa ilumina mis días más oscuros y tu amor llena cada rincón de mi corazón.</p>
+                <p>Esta página es un pequeño reflejo de todo lo que siento por ti, un lugar donde guardo nuestros recuerdos y donde puedo expresar lo que a veces las palabras no alcanzan a decir.</p>
+                <p>Eres mi persona favorita en este mundo, mi razón para sonreír cada mañana y mi sueño cada noche.</p>
+                <p>Con todo mi amor,</p>
+                <p class="signature">[Tu Nombre]</p>
+            </div>
         </section>
 
-        <section class="featured">
-            <h2>Productos Destacados</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <img src="https://via.placeholder.com/250x250?text=Figura+Naruto" alt="Figura de Naruto">
-                    <h3>Figura Naruto Shippuden</h3>
-                    <p class="price">$49.99</p>
-                    <button class="add-to-cart">Añadir al carrito</button>
+        <section class="memories">
+            <h2><i class="fas fa-camera"></i> Nuestros Recuerdos</h2>
+            <div class="gallery">
+                <!-- Las imágenes se añadirán dinámicamente -->
+                <div class="upload-section">
+                    <form id="uploadForm" action="upload.php" method="post" enctype="multipart/form-data">
+                        <label for="photoUpload" class="upload-btn">
+                            <i class="fas fa-cloud-upload-alt"></i> Añadir Foto
+                        </label>
+                        <input type="file" id="photoUpload" name="photoUpload" accept="image/*" style="display: none;">
+                        <button type="submit" class="submit-btn">Subir Foto</button>
+                    </form>
                 </div>
-                <div class="product-card">
-                    <img src="https://via.placeholder.com/250x250?text=Manga+Demon+Slayer" alt="Manga Demon Slayer">
-                    <h3>Manga Demon Slayer Vol. 1</h3>
-                    <p class="price">$12.99</p>
-                    <button class="add-to-cart">Añadir al carrito</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://via.placeholder.com/250x250?text=Funko+Pop+One+Piece" alt="Funko Pop Luffy">
-                    <h3>Funko Pop Monkey D. Luffy</h3>
-                    <p class="price">$24.99</p>
-                    <button class="add-to-cart">Añadir al carrito</button>
-                </div>
-                <div class="product-card">
-                    <img src="https://via.placeholder.com/250x250?text=Poster+Attack+on+Titan" alt="Poster Attack on Titan">
-                    <h3>Poster Attack on Titan</h3>
-                    <p class="price">$9.99</p>
-                    <button class="add-to-cart">Añadir al carrito</button>
+                <div class="photos-container" id="photosContainer">
+                    <!-- Las fotos subidas aparecerán aquí -->
+                    <div class="photo-placeholder">
+                        <p>Añade nuestras fotos aquí</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="categories">
-            <h2>Categorías</h2>
-            <div class="category-grid">
-                <div class="category-card">
-                    <img src="https://via.placeholder.com/200x200?text=Figuras" alt="Figuras de anime">
-                    <h3>Figuras</h3>
+        <section class="reasons">
+            <h2><i class="fas fa-star"></i> 10 Razones Por Las Que Te Amo</h2>
+            <ol class="reasons-list">
+                <li>Por tu sonrisa que ilumina mi mundo</li>
+                <li>Por tu corazón bondadoso y generoso</li>
+                <li>Por la forma en que me haces sentir especial</li>
+                <li>Por tus ojos que parecen contener el universo</li>
+                <li>Por tu inteligencia y tu forma de ver la vida</li>
+                <li>Por cómo me apoyas en todo momento</li>
+                <li>Por tu risa contagiosa</li>
+                <li>Por los pequeños detalles que me regalas</li>
+                <li>Por ser mi mejor amiga y mi amor</li>
+                <li>Porque simplemente eres tú</li>
+            </ol>
+        </section>
+
+        <section class="countdown">
+            <h2><i class="fas fa-clock"></i> Nuestro Tiempo Juntos</h2>
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <span id="years">0</span>
+                    <p>Años</p>
                 </div>
-                <div class="category-card">
-                    <img src="https://via.placeholder.com/200x200?text=Mangas" alt="Mangas">
-                    <h3>Mangas</h3>
+                <div class="countdown-box">
+                    <span id="months">0</span>
+                    <p>Meses</p>
                 </div>
-                <div class="category-card">
-                    <img src="https://via.placeholder.com/200x200?text=Ropa" alt="Ropa anime">
-                    <h3>Ropa</h3>
+                <div class="countdown-box">
+                    <span id="days">0</span>
+                    <p>Días</p>
                 </div>
-                <div class="category-card">
-                    <img src="https://via.placeholder.com/200x200?text=Accesorios" alt="Accesorios anime">
-                    <h3>Accesorios</h3>
+                <div class="countdown-box">
+                    <span id="hours">0</span>
+                    <p>Horas</p>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Sobre Nosotros</h4>
-                <p>Anime World es la tienda líder en productos de anime en Latinoamérica desde 2010.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Enlaces Rápidos</h4>
-                <ul>
-                    <li><a href="#">Preguntas Frecuentes</a></li>
-                    <li><a href="#">Envíos</a></li>
-                    <li><a href="#">Devoluciones</a></li>
-                    <li><a href="#">Términos y Condiciones</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Contacto</h4>
-                <p>contacto@animeworld.com</p>
-                <p>+1 234 567 890</p>
-                <div class="social-icons">
-                    <i class="fab fa-facebook"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-instagram"></i>
-                </div>
-            </div>
+        <div class="footer-hearts">
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-heart"></i>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 Anime World. Todos los derechos reservados.</p>
-        </div>
+        <p>Hecho con amor para Sara - © <span id="year"></span></p>
     </footer>
+
+    <script>
+        // Actualizar el año en el footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Configurar la fecha de inicio de la relación (cambia por tu fecha real)
+        const startDate = new Date('2023-01-01');
+        
+        function updateCountdown() {
+            const now = new Date();
+            const diff = now - startDate;
+            
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            
+            document.getElementById('years').textContent = years;
+            document.getElementById('months').textContent = Math.floor(months);
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 3600000); // Actualizar cada hora
+        
+        // Manejar la subida de fotos (simulación)
+        document.getElementById('photoUpload').addEventListener('change', function(e) {
+            const files = e.target.files;
+            const container = document.getElementById('photosContainer');
+            
+            // Limpiar placeholder si existe
+            const placeholder = container.querySelector('.photo-placeholder');
+            if (placeholder) container.removeChild(placeholder);
+            
+            for (let file of files) {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        const photoDiv = document.createElement('div');
+                        photoDiv.className = 'photo';
+                        
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.alt = 'Nuestro recuerdo';
+                        
+                        photoDiv.appendChild(img);
+                        container.appendChild(photoDiv);
+                    }
+                    
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
