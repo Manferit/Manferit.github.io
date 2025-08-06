@@ -104,7 +104,7 @@
         document.getElementById('year').textContent = new Date().getFullYear();
         
         // Configurar la fecha de inicio de la relación (cambia por tu fecha real)
-        const startDate = new Date('2023-01-01');
+        const startDate = new Date('2024-05-17');
         
         function updateCountdown() {
             const now = new Date();
@@ -154,8 +154,74 @@
             }
         });
     </script>
+    <script
+     // ============== NUEVO CÓDIGO COMPLETO ==============
+    // Función principal para manejar la subida de fotos
+    document.getElementById('photoUpload').addEventListener('change', function(e) {
+        const files = e.target.files;
+        const container = document.getElementById('photosContainer');
+        
+        // Limpiar placeholder si existe
+        container.querySelector('.photo-placeholder')?.remove();
+        
+        Array.from(files).forEach(file => {
+            if (!file.type.startsWith('image/')) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                // 1. Guardar en localStorage
+                const photos = JSON.parse(localStorage.getItem('saraPhotos') || [];
+                photos.push(e.target.result);
+                localStorage.setItem('saraPhotos', JSON.stringify(photos));
+                
+                // 2. Mostrar todas las fotos
+                displayPhotos();
+            }
+            reader.readAsDataURL(file);
+        });
+    });
+
+    // Función para mostrar fotos guardadas
+    function displayPhotos() {
+        const container = document.getElementById('photosContainer');
+        const photos = JSON.parse(localStorage.getItem('saraPhotos')) || [];
+        
+        container.innerHTML = '';
+        
+        if (photos.length === 0) {
+            container.innerHTML = '<div class="photo-placeholder"><p>Añade nuestras fotos aquí</p></div>';
+            return;
+        }
+        
+        photos.forEach((photoData, index) => {
+            const photoDiv = document.createElement('div');
+            photoDiv.className = 'photo';
+            photoDiv.innerHTML = `
+                <img src="${photoData}" alt="Nuestro recuerdo">
+                <button class="delete-btn" data-index="${index}">×</button>
+            `;
+            container.appendChild(photoDiv);
+        });
+        
+        // Agregar funcionalidad a los botones de eliminar
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                const photos = JSON.parse(localStorage.getItem('saraPhotos'));
+                photos.splice(index, 1);
+                localStorage.setItem('saraPhotos', JSON.stringify(photos));
+                displayPhotos(); // Actualizar la visualización
+            });
+        });
+    }
+
+    // Cargar fotos automáticamente al abrir la página
+    window.addEventListener('DOMContentLoaded', displayPhotos);
+    // ============== FIN DEL NUEVO CÓDIGO ==============
+</script>
 </body>
 </html>
+
 
 
 
