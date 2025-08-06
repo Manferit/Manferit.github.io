@@ -32,18 +32,13 @@
         <section class="memories">
             <h2><i class="fas fa-camera"></i> Fotasas </h2>
             <div class="gallery">
-                <!-- Las imágenes se añadirán dinámicamente -->
                 <div class="upload-section">
-                    <form id="uploadForm" action="upload.php" method="post" enctype="multipart/form-data">
-                        <label for="photoUpload" class="upload-btn">
-                            <i class="fas fa-cloud-upload-alt"></i> Añadir Foto
-                        </label>
-                        <input type="file" id="photoUpload" name="photoUpload" accept="image/*" style="display: none;">
-                        
-                    </form>
+                    <label for="photoUpload" class="upload-btn">
+                        <i class="fas fa-cloud-upload-alt"></i> Añadir Foto
+                    </label>
+                    <input type="file" id="photoUpload" accept="image/*" multiple style="display: none;">
                 </div>
                 <div class="photos-container" id="photosContainer">
-                    <!-- Las fotos subidas aparecerán aquí -->
                     <div class="photo-placeholder">
                         <p>Añade nuestras fotos aquí</p>
                     </div>
@@ -71,19 +66,19 @@
             <h2><i class="fas fa-clock"></i> Nuestro Tiempo Juntos</h2>
             <div class="countdown-container">
                 <div class="countdown-box">
-                    <span id="years">1</span>
+                    <span id="years">0</span>
                     <p>Años</p>
                 </div>
                 <div class="countdown-box">
-                    <span id="months">2</span>
+                    <span id="months">0</span>
                     <p>Meses</p>
                 </div>
                 <div class="countdown-box">
-                    <span id="days">20</span>
+                    <span id="days">0</span>
                     <p>Días</p>
                 </div>
                 <div class="countdown-box">
-                    <span id="hours">59</span>
+                    <span id="hours">0</span>
                     <p>Horas</p>
                 </div>
             </div>
@@ -103,7 +98,7 @@
         // Actualizar el año en el footer
         document.getElementById('year').textContent = new Date().getFullYear();
         
-        // Configurar la fecha de inicio de la relación (cambia por tu fecha real)
+        // Configurar la fecha de inicio de la relación (17 de mayo de 2024)
         const startDate = new Date('2024-05-17');
         
         function updateCountdown() {
@@ -124,103 +119,71 @@
         updateCountdown();
         setInterval(updateCountdown, 3600000); // Actualizar cada hora
         
-        // Manejar la subida de fotos (simulación)
+        // Sistema de fotos con localStorage
         document.getElementById('photoUpload').addEventListener('change', function(e) {
             const files = e.target.files;
             const container = document.getElementById('photosContainer');
             
             // Limpiar placeholder si existe
-            const placeholder = container.querySelector('.photo-placeholder');
-            if (placeholder) container.removeChild(placeholder);
+            container.querySelector('.photo-placeholder')?.remove();
             
-            for (let file of files) {
-                if (file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    
-                    reader.onload = function(e) {
-                        const photoDiv = document.createElement('div');
-                        photoDiv.className = 'photo';
-                        
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.alt = 'Nuestro recuerdo';
-                        
-                        photoDiv.appendChild(img);
-                        container.appendChild(photoDiv);
-                    }
-                    
-                    reader.readAsDataURL(file);
-                }
-            }
-        });
-    </script>
-    <script
-     // ============== NUEVO CÓDIGO COMPLETO ==============
-    // Función principal para manejar la subida de fotos
-    document.getElementById('photoUpload').addEventListener('change', function(e) {
-        const files = e.target.files;
-        const container = document.getElementById('photosContainer');
-        
-        // Limpiar placeholder si existe
-        container.querySelector('.photo-placeholder')?.remove();
-        
-        Array.from(files).forEach(file => {
-            if (!file.type.startsWith('image/')) return;
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                // 1. Guardar en localStorage
-                const photos = JSON.parse(localStorage.getItem('saraPhotos') || [];
-                photos.push(e.target.result);
-                localStorage.setItem('saraPhotos', JSON.stringify(photos));
+            Array.from(files).forEach(file => {
+                if (!file.type.startsWith('image/')) return;
                 
-                // 2. Mostrar todas las fotos
-                displayPhotos();
-            }
-            reader.readAsDataURL(file);
-        });
-    });
-
-    // Función para mostrar fotos guardadas
-    function displayPhotos() {
-        const container = document.getElementById('photosContainer');
-        const photos = JSON.parse(localStorage.getItem('saraPhotos')) || [];
-        
-        container.innerHTML = '';
-        
-        if (photos.length === 0) {
-            container.innerHTML = '<div class="photo-placeholder"><p>Añade nuestras fotos aquí</p></div>';
-            return;
-        }
-        
-        photos.forEach((photoData, index) => {
-            const photoDiv = document.createElement('div');
-            photoDiv.className = 'photo';
-            photoDiv.innerHTML = `
-                <img src="${photoData}" alt="Nuestro recuerdo">
-                <button class="delete-btn" data-index="${index}">×</button>
-            `;
-            container.appendChild(photoDiv);
-        });
-        
-        // Agregar funcionalidad a los botones de eliminar
-        document.querySelectorAll('.delete-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const index = parseInt(this.getAttribute('data-index'));
-                const photos = JSON.parse(localStorage.getItem('saraPhotos'));
-                photos.splice(index, 1);
-                localStorage.setItem('saraPhotos', JSON.stringify(photos));
-                displayPhotos(); // Actualizar la visualización
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // 1. Guardar en localStorage
+                    const photos = JSON.parse(localStorage.getItem('saraPhotos') || '[]');
+                    photos.push(e.target.result);
+                    localStorage.setItem('saraPhotos', JSON.stringify(photos));
+                    
+                    // 2. Mostrar todas las fotos
+                    displayPhotos();
+                }
+                reader.readAsDataURL(file);
             });
         });
-    }
 
-    // Cargar fotos automáticamente al abrir la página
-    window.addEventListener('DOMContentLoaded', displayPhotos);
-    // ============== FIN DEL NUEVO CÓDIGO ==============
-</script>
+        // Función para mostrar fotos guardadas
+        function displayPhotos() {
+            const container = document.getElementById('photosContainer');
+            const photos = JSON.parse(localStorage.getItem('saraPhotos')) || [];
+            
+            container.innerHTML = '';
+            
+            if (photos.length === 0) {
+                container.innerHTML = '<div class="photo-placeholder"><p>Añade nuestras fotos aquí</p></div>';
+                return;
+            }
+            
+            photos.forEach((photoData, index) => {
+                const photoDiv = document.createElement('div');
+                photoDiv.className = 'photo';
+                photoDiv.innerHTML = `
+                    <img src="${photoData}" alt="Nuestro recuerdo">
+                    <button class="delete-btn" data-index="${index}">×</button>
+                `;
+                container.appendChild(photoDiv);
+            });
+            
+            // Agregar funcionalidad a los botones de eliminar
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    const photos = JSON.parse(localStorage.getItem('saraPhotos'));
+                    photos.splice(index, 1);
+                    localStorage.setItem('saraPhotos', JSON.stringify(photos));
+                    displayPhotos();
+                });
+            });
+        }
+
+        // Cargar fotos al abrir la página
+        window.addEventListener('DOMContentLoaded', displayPhotos);
+    </script>
 </body>
 </html>
+
 
 
 
