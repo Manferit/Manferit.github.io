@@ -1,0 +1,431 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #fff9fb;
+    color: #5a4a4f;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #ffd6e7 0%, #ffffff 100%);
+    text-align: center;
+    padding: 3rem 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23ff85b2" opacity="0.2" d="M30,50 Q50,30 70,50 Q50,70 30,50"/></svg>');
+    background-size: 100px 100px;
+    opacity: 0.3;
+}
+
+.heart-container {
+    font-size: 3rem;
+    color: #ff85b2;
+    margin-bottom: 1rem;
+    animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.2); }
+}
+
+header h1 {
+    font-size: 3rem;
+    color: #d35d8a;
+    margin-bottom: 0.5rem;
+    position: relative;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+header .subtitle {
+    font-size: 1.2rem;
+    color: #9d6381;
+    font-style: italic;
+}
+
+/* Secciones */
+section {
+    padding: 3rem 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: center;
+    color: #d35d8a;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h2 i {
+    margin: 0 0.5rem;
+    color: #ff85b2;
+}
+
+/* Carta de amor */
+.love-letter {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(211, 93, 138, 0.1);
+    margin: 2rem auto;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.love-letter::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, #ff85b2, #d35d8a);
+}
+
+.letter-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+}
+
+.letter-content p {
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.letter-content p::before {
+    content: "❤";
+    position: absolute;
+    left: -5px;
+    color: #ff85b2;
+}
+
+.signature {
+    text-align: right;
+    font-style: italic;
+    font-weight: bold;
+    color: #d35d8a;
+    margin-top: 2rem;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 1.3rem;
+}
+
+/* Galería de fotos - VERSIÓN MEJORADA */
+.memories {
+    background-color: #fff0f5;
+    position: relative;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 15px;
+}
+
+.photo {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    aspect-ratio: 1/1;
+    background: #fff;
+    border: 3px solid #ffebf3;
+}
+
+.photo:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    z-index: 2;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.photo:hover img {
+    transform: scale(1.1);
+}
+
+.photo::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.photo:hover::after {
+    opacity: 1;
+}
+
+/* Para fotos verticales */
+.photo.portrait img {
+    object-fit: contain;
+    background: #fff8fa;
+}
+
+.upload-section {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.upload-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff85b2;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1.1rem;
+    border: none;
+    box-shadow: 0 3px 10px rgba(211, 93, 138, 0.3);
+}
+
+.upload-btn:hover {
+    background-color: #d35d8a;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(211, 93, 138, 0.4);
+}
+
+.upload-btn i {
+    margin-right: 8px;
+}
+
+/* Razones de amor mejoradas */
+.reasons {
+    background-color: white;
+    background-image: radial-gradient(#ffebf3 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.reasons-list {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    counter-reset: reason-counter;
+    list-style: none;
+}
+
+.reasons-list li {
+    margin-bottom: 1.5rem;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    position: relative;
+    padding-left: 50px;
+    transition: transform 0.3s ease;
+}
+
+.reasons-list li:hover {
+    transform: translateX(10px);
+}
+
+.reasons-list li::before {
+    counter-increment: reason-counter;
+    content: counter(reason-counter);
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background-color: #ff85b2;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Countdown mejorado */
+.countdown {
+    background-color: #fff0f5;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, #ff85b2, #d35d8a, #ff85b2);
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 20px 0;
+}
+
+.countdown-box {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5rem 1rem;
+    min-width: 100px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, #ff85b2, #d35d8a);
+}
+
+.countdown-box span {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #d35d8a;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: 'Arial Black', sans-serif;
+}
+
+.countdown-box p {
+    color: #9d6381;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Footer mejorado */
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, #ffffff 0%, #ffd6e7 100%);
+    color: #9d6381;
+    position: relative;
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, #ff85b2, #d35d8a, #ff85b2, transparent);
+}
+
+.footer-hearts {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer-hearts i {
+    color: #ff85b2;
+    animation: float 3s ease-in-out infinite;
+    font-size: 1.5rem;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.footer-hearts i:nth-child(1) {
+    animation-delay: 0s;
+    color: #ff6b8b;
+}
+.footer-hearts i:nth-child(2) {
+    animation-delay: 0.5s;
+    color: #d35d8a;
+}
+.footer-hearts i:nth-child(3) {
+    animation-delay: 1s;
+    color: #ff85b2;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(5deg); }
+    50% { transform: translateY(-5px) rotate(-5deg); }
+    75% { transform: translateY(-8px) rotate(3deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .letter-content {
+        font-size: 1rem;
+    }
+    
+    .countdown-box {
+        min-width: 80px;
+        padding: 1rem 0.5rem;
+    }
+    
+    .countdown-box span {
+        font-size: 2rem;
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
+    }
+    
+    .reasons-list li {
+        padding-left: 40px;
+    }
+    
+    .countdown-container {
+        gap: 10px;
+    }
+}

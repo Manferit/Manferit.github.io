@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Sara, Con Todo Mi Corazon</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="heart-container">
+            <i class="fas fa-heart"></i>
+        </div>
+        <h1>Para Sara</h1>
+        <p class="subtitle">Para Mis Dramas Favoritos, Para Mi Colazon De Melon</p>
+    </header>
+
+    <main>
+        <section class="love-letter">
+            <h2><i class="fas fa-heart"></i> Mi Carta <i class="fas fa-heart"></i></h2>
+            <div class="letter-content">
+                <p>Querida Sarita,</p>
+                <p>Desde que te conocí me has hecho más que feliz, estoy agradecido de tener la fortuna de estar a tu lado, de ver tu sonrisa lindisima cada dia de mi vida</p>
+                <p>Y tus ojotes brillantes, gracias por ser mi todo, por ser la persona con la que quiero compartir todos mis dias, quiero que sepas lo importante que eres para mi y lo mucho que te quiero</p>
+                <p>Gracias por todos los momentos y risas que me has dado, te quiero muchote,</p>
+                <p class="signature">Manuelito</p>
+            </div>
+        </section>
+
+        <section class="memories">
+            <h2><i class="fas fa-camera"></i> Fotitas</h2>
+            <div class="gallery">
+                <div class="upload-section">
+                    <label for="photoUpload" class="upload-btn">
+                        <i class="fas fa-cloud-upload-alt"></i> Añadir Más Fotos
+                    </label>
+                    <input type="file" id="photoUpload" accept="image/*" multiple style="display: none;">
+                </div>
+                
+                <!-- FOTOS PREDEFINIDAS - REEMPLAZA ESTAS RUTAS CON TUS IMÁGENES -->
+                <div class="photo">
+                    <img src="img/sari 1.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="img/sari 2.jpg" alt="">
+                </div>
+                <div class="photo">
+                    <img src="img/sari 3.jpg" alt="">
+                </div>
+                 <div class="photo">
+                    <img src="img/sari 4.jpg" alt="">
+                </div>
+                 <div class="photo">
+                    <img src="img/sari5.jpg" alt="">
+                </div>
+                
+                <!-- Espacio para fotos subidas dinámicamente -->
+                <div id="photosContainer"></div>
+            </div>
+        </section>
+
+        <section class="reasons">
+            <h2><i class="fas fa-star"></i> 10 Razones Por Las Que Te Amo</h2>
+            <ol class="reasons-list">
+                <li>Por tu Cariño</li>
+                <li>Por tu corazón todo bonito</li>
+                <li>Por que me haces sentir amado</li>
+                <li>Por esos ojotes hermosos</li>
+                <li>Por tus dramotas jiji</li>
+                <li>Por cómo me apoyas en todo momento</li>
+                <li>Por tu risa</li>
+                <li>Por los detalles que me regalas</li>
+                <li>Por siempre escucharme</li>
+                <li>Por ser tu</li>
+            </ol>
+        </section>
+
+        <section class="countdown">
+            <h2><i class="fas fa-clock"></i> Nuestro Tiempo Juntos</h2>
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <span id="years">0</span>
+                    <p>Años</p>
+                </div>
+                <div class="countdown-box">
+                    <span id="months">0</span>
+                    <p>Meses</p>
+                </div>
+                <div class="countdown-box">
+                    <span id="days">0</span>
+                    <p>Días</p>
+                </div>
+                <div class="countdown-box">
+                    <span id="hours">0</span>
+                    <p>Horas</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-hearts">
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-heart"></i>
+        </div>
+        <p>Hecho con amor para Sarita - © <span id="year"></span></p>
+    </footer>
+
+    <script>
+        // Actualizar el año en el footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Configurar la fecha de inicio de la relación (17 de mayo de 2024)
+        const startDate = new Date('2024-05-17');
+        
+        function updateCountdown() {
+            const now = new Date();
+            const diff = now - startDate;
+            
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            
+            document.getElementById('years').textContent = years;
+            document.getElementById('months').textContent = Math.floor(months);
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 3600000);
+
+        // Sistema de fotos
+        document.getElementById('photoUpload').addEventListener('change', function(e) {
+            const files = e.target.files;
+            const container = document.getElementById('photosContainer');
+            
+            Array.from(files).forEach(file => {
+                if (!file.type.startsWith('image/')) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const photoDiv = document.createElement('div');
+                    photoDiv.className = 'photo';
+                    photoDiv.innerHTML = `
+                        <img src="${e.target.result}" alt="Foto subida">
+                        <button class="delete-btn" onclick="this.parentElement.remove()">×</button>
+                    `;
+                    container.appendChild(photoDiv);
+                }
+                reader.readAsDataURL(file);
+            });
+        });
+    </script>
+</body>
+</html>
